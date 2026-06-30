@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập 1 - Tìm kiếm Sản phẩm</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .error-msg {
+            color: #e74c3c;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+        .explanation {
+            background: #eef7fc;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 30px;
+            border-radius: 4px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="LyThuyet.html">Trả lời Lý thuyết</a>
+        <a href="Btap1.html">Bài tập 1</a>
+        <a href="Btap2.html">Bài tập 2</a>
+        <a href="Btap3.html">Bài tập 3</a>
+        <a href="https://wayground.com/join/game/U2FsdGVkX1%252Fqcxw4Fg3IorhodpdH%252BVGNBtrj3PvvMCCuVc1B1sgUCx%252B5DHgWIN9xfREYdSO3Eca5ux3EPX2%252B7Q%253D%253D?gameType=live&page=summar" target="_blank">Bài tập 18</a>
+        <a href="https://wonderful-quokka-79d94f.netlify.app/den_keo_quan" target="_blank">Bài tập 19</a>
+        <a href="Contact.html">Thông tin Điểm danh</a>
+    </nav>
+    <div class="container">
+        <h2>Danh sách sản phẩm công nghệ</h2>
+        <input type="text" id="searchInput" class="search-box" placeholder="Nhập tên sản phẩm để tìm kiếm...">
+        <div id="error" class="error-msg">Không tìm thấy sản phẩm phù hợp!</div>
+        <div id="grid" class="product-grid"></div>
+
+        <div class="explanation">
+            <strong>Tư duy logic & tối ưu:</strong> Sử dụng sự kiện <code>input</code> để tìm kiếm thời gian thực. Chuẩn hóa chuỗi bằng <code>toLowerCase()</code> giúp tìm kiếm không phân biệt hoa thường. Sử dụng <code>textContent</code> khi chèn dữ liệu để chống lỗi Injection (XSS), tối ưu hiệu suất bằng cách lặp mảng sạch.
+        </div>
+    </div>
+    <script>
+        const products = [
+            { id: 1, name: 'Điện thoại iPhone 15 Pro' },
+            { id: 2, name: 'Máy tính bảng iPad Air' },
+            { id: 3, name: 'Laptop MacBook Air M3' },
+            { id: 4, name: 'Tai nghe AirPods Pro' },
+            { id: 5, name: 'Đồng hồ Apple Watch Ultra' }
+        ];
+        const grid = document.getElementById('grid');
+        const input = document.getElementById('searchInput');
+        const error = document.getElementById('error');
+
+        function render(list) {
+            grid.innerHTML = '';
+            if (list.length === 0) {
+                error.style.display = 'block';
+                return;
+            }
+            error.style.display = 'none';
+            list.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.textContent = p.name;
+                grid.appendChild(card);
+            });
+        }
+
+        input.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+            render(filtered);
+        });
+
+        render(products);
+    </script>
+</body>
+</html>
