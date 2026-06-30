@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lý thuyết - Lập trình Web</title>
+    <style>
+        :root { --primary-color: #2c3e50; --secondary-color: #3498db; --bg-color: #f8f9fa; --text-color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); margin: 0; padding: 0; }
+        nav { background-color: var(--primary-color); padding: 15px 0; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+        nav a:hover { color: var(--secondary-color); }
+        .container { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; }
+        .question-block { margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        h2 { font-size: 18px; color: var(--secondary-color); }
+        pre { background-color: #2d3436; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: monospace; }
+    </style>
+</head>
+<body>
+   <nav>
+        <a href="index.html">Trang chủ</a>
+        <a href="LyThuyet.html">Trả lời Lý thuyết</a>
+        <a href="Btap1.html">Bài tập 1</a>
+        <a href="Btap2.html">Bài tập 2</a>
+        <a href="Btap3.html">Bài tập 3</a>
+        <a href="https://wayground.com/join/game/U2FsdGVkX1%252Fqcxw4Fg3IorhodpdH%252BVGNBtrj3PvvMCCuVc1B1sgUCx%252B5DHgWIN9xfREYdSO3Eca5ux3EPX2%252B7Q%253D%253D?gameType=live&page=summar" target="_blank">Bài tập 18</a>
+        <a href="https://wonderful-quokka-79d94f.netlify.app/den_keo_quan" target="_blank">Bài tập 19</a>
+        <a href="Contact.html">Thông tin Điểm danh</a>
+    </nav>
+    <div class="container">
+        <h1>Phần 1: Trả lời Lý thuyết</h1>
+        <div class="question-block">
+            <h2>1. Sự khác biệt giữa position: absolute và position: relative</h2>
+            <p><strong>Khác biệt:</strong> <code>relative</code> giữ nguyên vị trí phần tử trong luồng tài liệu. <code>absolute</code> bứt phá khỏi luồng và định vị theo cha gần nhất có vị trí tương đối.</p>
+            <p><strong>Ví dụ Responsive:</strong> Thường dùng Relative cho khung bao ngoài (card) và Absolute cho nhãn giảm giá ở góc để luôn bám sát khung khi co giãn màn hình.</p>
+            <p><strong>Deploy lên hosting:</strong> Sử dụng các đơn vị linh hoạt như %, vw thay cho px cố định để layout không bị vỡ trên các màn hình thiết bị di động khác nhau.</p>
+        </div>
+        <div class="question-block">
+            <h2>2. Quy trình đăng ký Domain, Hosting và vai trò DNS</h2>
+            <p><strong>Quy trình:</strong> Đăng ký tên miền -> Thuê không gian máy chủ chứa code -> Trỏ bản ghi tên miền về IP máy chủ.</p>
+            <p><strong>DNS:</strong> Chuyển tên miền thân thiện thành IP để trình duyệt kết nối.</p>
+            <p><strong>Công cụ không cần server:</strong> GitHub Pages và Netlify hỗ trợ deploy trực tiếp từ mã nguồn tĩnh.</p>
+            <p><strong>Bảo mật:</strong> Thiếu cấu hình HTTPS hoặc để lộ thông tin cấu hình có thể dẫn đến việc rò rỉ dữ liệu hoặc tấn công giả mạo.</p>
+        </div>
+        <div class="question-block">
+            <h2>3. So sánh let, const và var</h2>
+            <p><strong>So sánh:</strong> <code>var</code> có phạm vi function-scope và có hoisting gán undefined. <code>let/const</code> có phạm vi block-scope an toàn hơn.</p>
+<pre>
+// Lỗi logic thường gặp với var trong vòng lặp
+for (var i = 0; i &lt; 3; i++) {
+    setTimeout(() => console.log(i), 100); // Ra 3, 3, 3 thay vì 0, 1, 2 (khắc phục bằng let)
+}
+</pre>
+            <p><strong>Debug:</strong> F12 mở Chrome DevTools, vào tab Sources, chọn dòng code bấm thêm Breakpoint và theo dõi biến ở cửa sổ Scope.</p>
+        </div>
+        <div class="question-block">
+            <h2>4. Khái niệm Event Delegation</h2>
+            <p><strong>Giải thích:</strong> Tận dụng cơ chế nổi bọt (Event Bubbling) để gán 1 trình xử lý sự kiện duy nhất lên thẻ cha thay vì gán cho từng thẻ con đơn lẻ.</p>
+            <p><strong>Ứng dụng:</strong> Giúp các phần tử li động khi render thêm mới tự động nhận sự kiện mà không cần liên kết lại, giảm dung lượng bộ nhớ trình duyệt, tăng tốc hiệu năng xử lý HTML/CSS.</p>
+        </div>
+    </div>
+</body>
+</html>
